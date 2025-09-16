@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +11,7 @@ body {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 80vw;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -103,7 +102,7 @@ hr {
   margin-top: 2rem;
 }
 
-#listings {
+.listings {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
@@ -161,7 +160,6 @@ hr {
   object-fit: cover;
 }
 
-/* Listing Detail Page Styles */
 .listing-detail {
   max-width: 800px;
   margin: 0 auto;
