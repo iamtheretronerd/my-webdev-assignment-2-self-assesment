@@ -76,8 +76,8 @@ h2 {
   margin-bottom: 1rem;
 }
 
-/* Intro section */
-.intro {
+
+.about {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
@@ -286,4 +286,112 @@ hr {
 
 .error {
   color: #ff5a5f;
+}
+
+
+@media (max-width: 1024px) {
+  .container {
+    max-width: 92vw;
+  }
+
+  .about {
+    gap: 1.25rem;
+  }
+
+  .listings {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .detail-image {
+    height: 320px; 
+  }
+}
+
+
+@media (max-width: 768px) {
+  /* Stack nav items */
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .search-form {
+    width: 100%;
+  }
+  .search-form input {
+    width: 100%;
+  }
+
+ 
+  .about {
+    flex-direction: column;
+  }
+  .sidebar, .content {
+    flex: 1 1 auto;
+  }
+
+
+  .listings {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+
+  .listing-image {
+    height: min(44vw, 220px);
+  }
+  .detail-image {
+    height: min(50vw, 360px);
+  }
+
+
+  .listing-detail {
+    margin: 0 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    max-width: 96vw;
+    padding: 0 12px;
+  }
+
+  nav {
+    gap: 0.5rem;
+  }
+  .nav-links {
+    gap: 0.5rem;
+  }
+
+
+  .listings {
+    grid-template-columns: 1fr;
+  }
+
+  .listing-content {
+    padding: 0.75rem;
+  }
+
+  .host-avatar {
+    width: 32px;
+    height: 32px;
+  }
+  .host-avatar-large {
+    width: 50px;
+    height: 50px;
+  }
+
+  .detail-title {
+    font-size: 1.5rem;
+  }
+  .detail-price {
+    font-size: 1.125rem;
+  }
 }

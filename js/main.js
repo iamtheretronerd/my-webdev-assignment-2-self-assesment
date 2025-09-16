@@ -1,7 +1,7 @@
 function MainModule(listingsID = "#listings") {
   const me = {};
-
   const listingsElement = document.querySelector(listingsID);
+  let allListings = []; // store all fetched listings
 
   function getListingCode(listing) {
     return `
@@ -26,21 +26,42 @@ function MainModule(listingsID = "#listings") {
   }
 
   function redraw(listings) {
-    listingsElement.innerHTML = "";
-    listingsElement.innerHTML = listings.map(getListingCode).join("\n");
+    listingsElement.innerHTML = listings.length
+      ? listings.map(getListingCode).join("\n")
+      : `<div class="error">No results found</div>`;
   }
 
   async function loadData() {
     const res = await fetch("./airbnb_sf_listings_500.json");
-    const listings = await res.json();
-    me.redraw(listings.slice(0, 50));
+    allListings = await res.json();
+    me.redraw(allListings.slice(0, 50));
+  }
+
+  function setupSearch() {
+    const form = document.querySelector(".search-form");
+    const input = form.querySelector("input");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const query = input.value.trim().toLowerCase();
+      if (!query) {
+        me.redraw(allListings.slice(0, 50)); // show default first 50
+        return;
+      }
+      const filtered = allListings.filter((listing) =>
+        listing.name.toLowerCase().includes(query)
+      );
+      me.redraw(filtered);
+    });
   }
 
   me.redraw = redraw;
   me.loadData = loadData;
+  me.setupSearch = setupSearch;
 
   return me;
 }
 
 const main = MainModule();
 main.loadData();
+main.setupSearch();
